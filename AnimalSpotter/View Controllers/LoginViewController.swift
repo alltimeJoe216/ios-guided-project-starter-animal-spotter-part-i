@@ -2,42 +2,46 @@
 //  LoginViewController.swift
 //  AnimalSpotter
 //
-//  Created by Ben Gohlke on 4/16/19.
-//  Copyright © 2019 Lambda School. All rights reserved.
+//  Created by Scott Gardner on 4/4/20.
+//  Copyright © 2020 Lambda School. All rights reserved.
 //
 
 import UIKit
 
-enum LoginType {
-    case signUp
-    case signIn
+enum LoginType: String {
+    case signUp = "Sign Up"
+    case signIn = "Sign In"
 }
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
+    // MARK: - Properties
     
-    @IBOutlet private weak var usernameTextField: UITextField!
-    @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet private weak var loginTypeSegmentedControl: UISegmentedControl!
-    @IBOutlet private weak var signInButton: UIButton!
+    static let identifier: String = String(describing: LoginViewController.self)
     
-    var apiController: APIController?
+    @IBOutlet weak var loginTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var loginType = LoginType.signUp
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        signInButton.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1.0)
-            signInButton.tintColor = .white
-            signInButton.layer.cornerRadius = 8.0
+        submitButton.layer.cornerRadius = 8
     }
     
-    // MARK: - Action Handlers
+    // MARK: - Actions
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
-        // perform login or sign up operation based on loginType
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
-    @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
-        // switch UI between login types
+    @IBAction func loginTypeChanged(_ sender: UISegmentedControl) {
+        
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: UIButton) {
+        
     }
 }
